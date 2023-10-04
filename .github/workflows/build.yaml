@@ -26,7 +26,7 @@ jobs:
         with:
           toolchain: stable
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt install libwebkit2gtk-4.0-dev \
+        run: sudo apt-get update && sudo apt-get -y install libwebkit2gtk-4.0-dev \
           build-essential \
           curl \
           wget \

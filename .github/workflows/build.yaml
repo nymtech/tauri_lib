@@ -25,10 +25,6 @@ jobs:
         uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: stable
       - name: Install dependencies
         run: sudo apt-get update && sudo apt install libwebkit2gtk-4.0-dev \
           build-essential \

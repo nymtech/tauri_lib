@@ -32,3 +32,17 @@ cd runner
 cargo build
 cargo run
 ```
+
+## Run
+
+First copy the compiled shared library in the directory from where
+you want to run the app:
+
+Example on Linux:
+
+```
+cd runner
+cp app/src-tauri/target/release/libvpnym.so .
+cargo run
+```
+

@@ -42,7 +42,7 @@ Example on Linux:
 
 ```
 cd runner
-cp app/src-tauri/target/release/libvpnym.so .
+cp ../app/src-tauri/target/release/libvpnym.so .
 cargo run
 ```
 

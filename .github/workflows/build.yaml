@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Target platform"
+        required: true
+        default: "linux"
+        type: choice
+        options:
+          - linux
+          - win
+          - darwin
+
+jobs:
+  linux_build:
+    name: Linux build
+    runs-on: ubuntu-latest
+    if: ${{ inputs.platform == 'linux' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt install libwebkit2gtk-4.0-dev \
+          build-essential \
+          curl \
+          wget \
+          file \
+          libssl-dev \
+          libgtk-3-dev \
+          libayatana-appindicator3-dev \
+          librsvg2-dev
+      - name: Install
+        run: npm i
+      - name: Build app
+        working-directory: app/src-tauri
+        run: |
+          npm run build
+          cargo build --release --locked
+      - name: Build runner
+        working-directory: runner
+        run: cargo build --locked
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux_vpnym
+          path: |
+            app/src-tauri/target/release/libvpnym.so
+            runner/target/debug/vpnym_d

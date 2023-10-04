@@ -5,6 +5,12 @@ shared library, that can be run from another app
 
 ## Install
 
+#### Prerequisites
+
+Follow instructions for your specific platform → https://tauri.app/v1/guides/getting-started/prerequisites
+
+#### Install project dependencies
+
 ```
 npm i
 ```

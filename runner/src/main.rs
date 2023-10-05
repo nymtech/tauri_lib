@@ -5,7 +5,7 @@ const LIB_FILE: &str = "libvpnym.so";
 #[cfg(target_os = "windows")]
 const LIB_FILE: &str = "vpnym.dll";
 #[cfg(target_os = "macos")]
-const LIB_FILE: &str = "vpnym.dylib";
+const LIB_FILE: &str = "libvpnym.dylib";
 
 fn call_dynamic() -> Result<(), Box<dyn std::error::Error>> {
     let lib_path = format!("lib/{LIB_FILE}");

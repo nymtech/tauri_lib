@@ -10,12 +10,12 @@ on:
         type: choice
         options:
           - linux
-          - win
+          - windows
           - darwin
 
 jobs:
-  linux_build:
-    name: Linux build
+  build_linux:
+    name: Build linux
     runs-on: ubuntu-latest
     if: ${{ inputs.platform == 'linux' }}
     steps:
@@ -45,7 +45,41 @@ jobs:
       - name: Upload binary artifact
         uses: actions/upload-artifact@v3
         with:
-          name: linux_vpnym
+          name: vpnym_linux
           path: |
             app/src-tauri/target/release/libvpnym.so
             runner/target/debug/vpnym_d
+
+  build_windows:
+    name: Build windows
+    runs-on: windows-latest
+    if: ${{ inputs.platform == 'windows' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install
+        working-directory: app
+        run: npm i
+      - name: Build app
+        working-directory: app/src-tauri
+        run: |
+          npm run build
+          cargo build --release --locked
+      - name: Build runner
+        working-directory: runner
+        run: cargo build --locked
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux_windows
+          path: |
+            app/src-tauri/target/release/vpnym.dll
+            runner/target/debug/vpnym_d.exe

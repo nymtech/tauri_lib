@@ -7,7 +7,11 @@ shared library, that can be run from another app
 
 #### Prerequisites
 
-Follow instructions for your specific platform → https://tauri.app/v1/guides/getting-started/prerequisites
+- Rust
+- Nodejs (npm), latest LTS version recommended
+
+Some system libraries are required depending on the host platform.
+Follow the instructions for your specific OS [here](https://tauri.app/v1/guides/getting-started/prerequisites)
 
 #### Install project dependencies
 
@@ -22,7 +26,7 @@ build the app (lib)
 ```
 cd app/src-tauri
 npm run build
-cargo build
+cargo build --release
 ```
 
 build the runner
@@ -30,7 +34,6 @@ build the runner
 ```
 cd runner
 cargo build
-cargo run
 ```
 
 ## Run

@@ -83,12 +83,7 @@ jobs:
         run: cargo build --locked
       - name: Prepare artifacts
         run: |
-          ls
-          ls app/src-tauri
-          ls app/src-tauri/target
-          ls app/src-tauri/target/release
           mkdir lib
-          ls
           mv app/src-tauri/target/release/vpnym.dll lib/
           mv runner/target/debug/vpnym_d.exe .
       - name: Upload artifacts

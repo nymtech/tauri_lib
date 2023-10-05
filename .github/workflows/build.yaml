@@ -94,3 +94,42 @@ jobs:
           path: |
             lib/
             vpnym_d.exe
+
+  build_darwin:
+    name: Build macos
+    runs-on: macos-latest
+    if: ${{ inputs.platform == 'macos' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install
+        working-directory: app
+        run: npm i
+      - name: Build app
+        working-directory: app/src-tauri
+        run: |
+          npm run build
+          cargo build --release --locked
+      - name: Build runner
+        working-directory: runner
+        run: cargo build --locked
+      - name: Prepare artifacts
+        run: |
+          mkdir lib
+          mv app/src-tauri/target/release/libvpnym.dylib lib/
+          mv runner/target/debug/vpnym_d .
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: vpnym_darwin
+          path: |
+            lib/
+            vpnym_d

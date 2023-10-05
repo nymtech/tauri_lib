@@ -11,7 +11,7 @@ on:
         options:
           - linux
           - windows
-          - darwin
+          - macos
 
 jobs:
   build_linux:
@@ -42,13 +42,18 @@ jobs:
       - name: Build runner
         working-directory: runner
         run: cargo build --locked
-      - name: Upload binary artifact
+      - name: Prepare artifacts
+        run: |
+          mkdir lib
+          mv app/src-tauri/target/release/libvpnym.so lib/
+          mv runner/target/debug/vpnym_d .
+      - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: vpnym_linux
           path: |
-            app/src-tauri/target/release/libvpnym.so
-            runner/target/debug/vpnym_d
+            lib/
+            vpnym_d
 
   build_windows:
     name: Build windows
@@ -76,10 +81,16 @@ jobs:
       - name: Build runner
         working-directory: runner
         run: cargo build --locked
-      - name: Upload binary artifact
+      - name: Prepare artifacts
+        run: |
+          mkdir lib
+          mv app/src-tauri/target/release/vpnym.dll lib/
+          mv app/src-tauri/target/release/WebView2Loader.dll lib/
+          mv runner/target/debug/vpnym_d.exe .
+      - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: linux_windows
           path: |
-            app/src-tauri/target/release/vpnym.dll
-            runner/target/debug/vpnym_d.exe
+            lib/
+            vpnym_d.exe

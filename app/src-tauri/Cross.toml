@@ -1,0 +1,3 @@
+[build.env]
+volumes = ["VOL1_ARG=../dist"]
+

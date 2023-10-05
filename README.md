@@ -35,14 +35,15 @@ cargo run
 
 ## Run
 
-First copy the compiled shared library in the directory from where
-you want to run the app:
+First copy the compiled shared library in a subdirectory named
+`lib` relative to where you want to run the app:
 
 Example on Linux:
 
 ```
 cd runner
-cp ../app/src-tauri/target/release/libvpnym.so .
+mkdir lib
+cp ../app/src-tauri/target/release/libvpnym.so lib
 cargo run
 ```
 

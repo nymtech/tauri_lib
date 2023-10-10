@@ -19,14 +19,20 @@ Follow the instructions for your specific OS [here](https://tauri.app/v1/guides/
 npm i
 ```
 
+## App Development
+
+```
+cd app
+npm run app:dev
+```
+
 ## Build
 
 build the app (lib)
 
 ```
-cd app/src-tauri
-npm run build
-cargo build --release
+cd app
+npm run app:build
 ```
 
 build the runner

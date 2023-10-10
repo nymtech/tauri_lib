@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "app:dev": "tauri dev",
+    "app:build": "npm run build && cd src-tauri && cargo build --release --lib",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",

@@ -38,7 +38,7 @@ jobs:
         working-directory: app/src-tauri
         run: |
           npm run build
-          cargo build --release --locked
+          cargo build --release --lib --features custom-protocol --locked
       - name: Build runner
         working-directory: runner
         run: cargo build --locked
@@ -77,7 +77,7 @@ jobs:
         working-directory: app/src-tauri
         run: |
           npm run build
-          cargo build --release --locked
+          cargo build --release --lib --features custom-protocol --locked
       - name: Build runner
         working-directory: runner
         run: cargo build --locked
@@ -116,7 +116,7 @@ jobs:
         working-directory: app/src-tauri
         run: |
           npm run build
-          cargo build --release --locked
+          cargo build --release --lib --features custom-protocol --locked
       - name: Build runner
         working-directory: runner
         run: cargo build --locked

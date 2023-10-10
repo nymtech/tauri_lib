@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "app:dev": "tauri dev",
-    "app:build": "npm run build && cd src-tauri && cargo build --release --lib",
+    "app:build": "npm run build && cd src-tauri && cargo build --release --lib --features custom-protocol",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",

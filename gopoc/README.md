@@ -7,7 +7,7 @@ For the FFI layer, between Go and Rust, we are using [cgo](https://pkg.go.dev/cm
 
 ### copying tauri lib files
 
-First copy the lib files (depending on what's your host/target arch) into a `lib` directory
+First copy the lib files (depending on what's your host/target arch) into the `lib` directory
 
 ```
 .

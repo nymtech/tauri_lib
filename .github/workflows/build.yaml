@@ -126,7 +126,9 @@ jobs:
         run: cargo build --locked
       - name: Build gopoc
         working-directory: gopoc
-        run: go build -ldflags="-r ./lib" -o bin/vpnym_d gopoc.go
+        run: |
+          cp ${{ github.workspace }}/app/src-tauri/target/release/libvpnym.dylib lib/
+          go build -ldflags="-r ./lib" -o bin/vpnym_d gopoc.go
       - name: Prepare artifacts
         run: |
           mkdir lib

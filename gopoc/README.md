@@ -7,7 +7,8 @@ For the FFI layer, between Go and Rust, we are using [cgo](https://pkg.go.dev/cm
 
 ### copying tauri lib files
 
-First copy the lib files (depending on what's your host/target arch) into the `lib` directory
+First compile and copy the `vpnym` lib files (depending on what is
+your host/target arch) into the `lib` directory
 
 ```
 .
@@ -16,7 +17,6 @@ First copy the lib files (depending on what's your host/target arch) into the `l
 ├── lib
 │  ├── libvpnym.so
 │  ├── vpnym.dll
-│  ├── vpnym.h
 │  └── WebView2Loader.dll
 └── README.md
 ```

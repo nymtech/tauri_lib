@@ -1,8 +1,9 @@
 package main
 
 /*
+#cgo CFLAGS: -I./include
 #cgo LDFLAGS: -L./lib -lvpnym
-#include "./lib/vpnym.h"
+#include "vpnym.h"
 */
 import "C"
 

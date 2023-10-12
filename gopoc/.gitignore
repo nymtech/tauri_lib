@@ -1,4 +1,5 @@
 lib/*.so
 lib/*.dll
-bin
+lib/*.dylib
+bin/
 .idea

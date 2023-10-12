@@ -109,6 +109,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 'stable'
       - name: Install
         working-directory: app
         run: npm i
@@ -120,15 +124,21 @@ jobs:
       - name: Build runner
         working-directory: runner
         run: cargo build --locked
+      - name: Build gopoc
+        working-directory: gopoc
+        run: go build -ldflags="-r ./lib" -o bin/vpnym_d gopoc.go
       - name: Prepare artifacts
         run: |
           mkdir lib
+          mkdir go
           mv app/src-tauri/target/release/libvpnym.dylib lib/
           mv runner/target/debug/vpnym_d .
+          mv gopoc/bin/vpnym_d go/
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: vpnym_darwin
           path: |
             lib/
+            go/
             vpnym_d
